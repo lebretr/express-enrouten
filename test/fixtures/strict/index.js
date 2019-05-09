@@ -6,16 +6,19 @@
 //
 module.exports = function (router) {
 
-    router.get('/', function (req, res) {
-        res.send('ok');
+    router.get('/', function (ctx) {
+        ctx.status=200;
+        ctx.body='ok';
     });
 
-    router.get('/strict', function (req, res) {
-        res.send('ok');
+    router.get('/strict', function (ctx) {
+        ctx.status=200;
+        ctx.body='ok';
     });
 
-    router.get('/very-strict/', function (req, res) {
-        res.send('ok');
+    router.get('/very-strict/', function (ctx) {
+        ctx.status=200;
+        ctx.body='ok';
     });
 
 };

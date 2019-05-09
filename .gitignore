@@ -24,3 +24,5 @@ npm-debug.log
 ehthumbs.db
 Icon?
 Thumbs.db
+
+.nyc_output

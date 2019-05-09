@@ -3,8 +3,9 @@
 
 module.exports = function (router) {
 
-    router.get('/', function (req, res) {
-        res.send('ok');
+    router.get('/', function (ctx) {
+        ctx.status=200;
+        ctx.body='ok';
     });
 
 };

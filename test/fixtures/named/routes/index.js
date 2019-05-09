@@ -3,20 +3,22 @@
 
 module.exports = function (router) {
 
-
-    router({ path: '/', name: 'my-foo' })
-        .get(function (req, res) {
-            res.send('ok');
+    router
+        .get('my-foo', '/', function (ctx) {
+            ctx.status=200;
+            ctx.body='ok';
         });
 
-    router({ path: '/bar', name: 'my-bar' })
-        .get(function (req, res) {
-            res.send('ok');
+    router
+        .get('my-bar', '/bar', function (ctx) {
+            ctx.status=200;
+            ctx.body='ok';
         });
 
-    router({ path: '/bar/:id', name: 'the-bar' })
-        .get(function (req, res) {
-            res.send('ok');
+    router
+        .get('the-bar', '/bar/:id',function (ctx) {
+            ctx.status=200;
+            ctx.body='ok';
         });
 
 };

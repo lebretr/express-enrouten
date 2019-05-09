@@ -3,17 +3,18 @@
 
 module.exports = function (router) {
 
-
-    router(/* noop */)
-        .get(function (req, res) {
-            res.send('ok');
+    router
+        .get('/', function (ctx) {
+            ctx.status=200;
+            ctx.body='ok';
         });
 
 
 
-    router({ path: '/stuff', name: 'my-list' })
-        .get(function (req, res) {
-            res.send('ok');
+    router
+        .get('my-list', '/stuff', function (ctx) {
+            ctx.status=200;
+            ctx.body='ok';
         });
 
 };

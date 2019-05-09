@@ -19,14 +19,13 @@
 
 var path = require('path');
 var caller = require('caller');
-var express = require('express');
-var debug = require('debuglog')('enrouten');
+// var express = require('express');
+// var debug = require('debuglog')('enrouten');
 var index = require('./lib/index');
 var routes = require('./lib/routes');
-var registry = require('./lib/registry');
+// var registry = require('./lib/registry');
 var directory = require('./lib/directory');
-var path2regexp = require('path-to-regexp');
-
+// var path2regexp = require('path-to-regexp');
 
 /**
  * Creates the onmount handler used to process teh middelwarez
@@ -36,7 +35,7 @@ var path2regexp = require('path-to-regexp');
  */
 function mount(app, options) {
 
-    return function onmount(parent) {
+    return function onmount(/* parent */) {
         var router,
             routerOptions;
 
@@ -46,8 +45,9 @@ function mount(app, options) {
         // Remove sacrificial express app and keep a
         // copy of the currently registered items.
         /// XXX: caveat emptor, private member
-        parent._router.stack.pop();
-        router = registry(app.mountpath, null, routerOptions);
+        // parent._router.stack.pop();
+        // router = registry(app.mountpath, null, routerOptions);
+        router=app;
 
         // Process the configuration, adding to the stack
         if (typeof options.index === 'string') {
@@ -65,24 +65,24 @@ function mount(app, options) {
         }
 
         // Setup app locals for use in handlers.
-        parent.locals.enrouten = {
+        // parent.locals.enrouten = {
 
-            routes: router.routes,
+        //     routes: router.routes,
 
-            path: function path(name, data) {
-                var route;
-                route = this.routes[name];
-                if (typeof route === 'string') {
-                    return path2regexp.compile(route)(data);
-                }
-                return undefined;
-            }
+        //     path: function path(name, data) {
+        //         var route;
+        //         route = this.routes[name];
+        //         if (typeof route === 'string') {
+        //             return path2regexp.compile(route)(data);
+        //         }
+        //         return undefined;
+        //     }
 
-        };
+        // };
 
-        debug('mounting routes at', app.mountpath);
-        debug(router.routes);
-        parent.use(app.mountpath, router._router);
+        // debug('mounting routes at', app.mountpath);
+        // debug(router.routes);
+        // parent.use(app.mountpath, router._router);
     };
 
 }
@@ -110,14 +110,15 @@ function resolve(basedir, file) {
  * @param options the configuration settings for this middleware instance
  * @returns {Function} express middleware
  */
-function enrouten(options) {
+function enrouten(options, router) {
     var app;
 
     options = options || {};
     options.basedir = options.basedir || path.dirname(caller());
 
-    app = express();
-    app.once('mount', mount(app, options));
+    app = router ;//|| express();
+    var a=mount(app, options);
+    a();
 
     return app;
 }

@@ -3,17 +3,19 @@
 
 module.exports = function (router) {
 
-    router.use('/foo', function (req, res, next) {
-        req.foo = true;
+    router.use('/foo', function (ctx, next) {
+        ctx.foo = true;
         next();
     });
 
-    router.get('/foo', function (req, res) {
-        if (req.foo) {
-            res.send(200, 'ok');
+    router.get('/foo', function (ctx) {
+        if (ctx.foo) {
+            ctx.status=200;
+            ctx.body='ok';
             return;
         }
-        res.send(500, 'not ok');
+        ctx.status=500;
+        ctx.body='not ok';
     });
 
 };

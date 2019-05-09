@@ -4,3 +4,4 @@ node_modules
 logs
 test
 *.log
+.nyc_output

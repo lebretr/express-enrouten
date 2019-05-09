@@ -1,6 +1,6 @@
 {
   "name": "@lebretr/koa-router-enrouten",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "An koa route initialization and configuration module.",
   "main": "index.js",
   "scripts": {

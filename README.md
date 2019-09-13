@@ -8,13 +8,18 @@ Route configuration middleware for koa-router.
 ### API
 #### `enrouten(options, router))`
 ```javascript
-const Router = require('koa-router')
+const Koa = require('koa')
+    , app = new Koa()
+    , Router = require('koa-router')
     , router = new Router()
     , enrouten = require('@lebretr/koa-router-enrouten');
 
 enrouten({
     directory: './controllers'
 },router);
+
+app.use(router.routes())
+    .use(router.allowedMethods());
 ...
 // or app.use('/foo', enrouten({ ... }));
 ```

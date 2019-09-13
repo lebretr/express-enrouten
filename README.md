@@ -1,4 +1,4 @@
-# express-enrouten
+# koa-router-enrouten
 
 [![npm version](https://badge.fury.io/js/%40lebretr%2Fkoa-router-enrouten.svg)](https://badge.fury.io/js/%40lebretr%2Fkoa-router-enrouten)
 
